@@ -19,52 +19,18 @@ export default function CostInfo() {
             精神科訪問看護は「公的医療保険」が適用されます。さらに国の制度である
             「自立支援医療制度」をご利用いただくことで、費用負担が1割（かつ月ごとの上限付き）に大幅軽減されます。
           </p>
+          <div className="mt-4 p-3 bg-soft-orange/5 border border-soft-orange/20 rounded-xl inline-flex items-center gap-2 text-left">
+            <AlertCircle className="w-4 h-4 text-soft-orange shrink-0 animate-pulse" />
+            <p className="text-xs text-[#894D2A] font-bold">
+              ※料金は目安です。お住いの市区町村や自治体に確認、もしくはご相談ください。
+            </p>
+          </div>
         </div>
 
         {/* 2-Column Comparison Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-12">
           
-          {/* Card A: Normal Public Insurance */}
-          <div className="bg-white border-2 border-warm-sand rounded-3xl p-6 sm:p-8 hover:border-gray-300 transition-all flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700">
-                  <CreditCard className="w-5 h-5" />
-                </div>
-                <div>
-                  <span className="text-xs font-bold text-gray-400 uppercase tracking-wide">通常負担</span>
-                  <h4 className="text-lg font-bold font-serif text-forest-dark leading-tight">各種健康保険のみご利用の場合</h4>
-                </div>
-              </div>
-
-              <div className="bg-gray-50 rounded-2xl p-6 text-center font-serif mb-6 border border-gray-100">
-                <span className="text-sm font-semibold text-gray-500 block mb-1">自己負担割合</span>
-                <span className="text-4xl sm:text-5xl font-bold text-gray-800 tracking-tight">1割 〜 3割</span>
-                <span className="text-xs text-gray-400 block mt-2">※お手持ちの保険証の種類（後期高齢者・こくほ・社会保険など）によります。</span>
-              </div>
-
-              <ul className="space-y-4 text-sm text-gray-600">
-                <li className="flex items-start gap-2.5">
-                  <Check className="w-4 h-4 text-forest-medium mt-1 shrink-0" />
-                  <span>
-                    1回（約30分〜1時間）あたりのお支払い目安は、<strong>約800円〜2,500円</strong>前後となります。
-                  </span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <Check className="w-4 h-4 text-forest-medium mt-1 shrink-0" />
-                  <span>
-                    要介護認定が無くても、「医療保険」で週数回、制限なく継続的にご利用いただけます。
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gray-100/50 rounded-xl p-4 border border-gray-150 text-xs text-gray-500 mt-6 leading-relaxed">
-              ※週何回ご利用になられるか、緊急対応体制をご契約されるか等により、月次での総費用が変わります。詳しくは事前のご面談にて明快にご提示いたします。
-            </div>
-          </div>
-
-          {/* Card B: Self-Support Medical Cap (HIGH VALUE SPECIAL FOCUS FOR PSYCH_HOME_NURSE) */}
+          {/* Card A: Self-Support Medical Cap (HIGH VALUE SPECIAL FOCUS FOR PSYCH_HOME_NURSE) */}
           <div className="bg-gradient-to-b from-[#FFF2EB] to-white border-2 border-[#FCD9C6] rounded-3xl p-6 sm:p-8 shadow-md relative overflow-hidden flex flex-col justify-between">
             {/* Visual highlight ribbon */}
             <div className="absolute top-0 right-0 bg-soft-orange text-white text-[10px] font-bold py-1 px-4 rounded-bl-xl uppercase tracking-widest">
@@ -133,6 +99,47 @@ export default function CostInfo() {
                   自立支援医療が適用されると、たとえ月に何度ご利用になっても、上の表の上限金額（例: 市民税非課税世帯なら月2,500円、または5,000円など）を超えて当ステーションに支払う必要は一切なくなります。
                 </p>
               </div>
+            </div>
+          </div>
+
+          {/* Card B: Normal Public Insurance */}
+          <div className="bg-white border-2 border-warm-sand rounded-3xl p-6 sm:p-8 hover:border-gray-300 transition-all flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center text-gray-700">
+                  <CreditCard className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-gray-400 uppercase tracking-wide">通常負担</span>
+                  <h4 className="text-lg font-bold font-serif text-forest-dark leading-tight">各種健康保険のみご利用の場合</h4>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 rounded-2xl p-6 text-center font-serif mb-6 border border-gray-100">
+                <span className="text-sm font-semibold text-gray-500 block mb-1">自己負担割合</span>
+                <span className="text-4xl sm:text-5xl font-bold text-gray-800 tracking-tight">1割 〜 3割</span>
+                <span className="text-xs text-gray-400 block mt-2">※お手持ちの保険証の種類（後期高齢者・こくほ・社会保険など）によります。</span>
+              </div>
+
+              <ul className="space-y-4 text-sm text-gray-600">
+                <li className="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 text-forest-medium mt-1 shrink-0" />
+                  <span>
+                    1回（約30分〜1時間）あたりのお支払い目安は、<strong>約800円〜2,500円</strong>前後となります。
+                  </span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 text-forest-medium mt-1 shrink-0" />
+                  <span>
+                    要介護認定が無くても、「医療保険」で週数回、制限なく継続的にご利用いただけます。
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-gray-100/50 rounded-xl p-4 border border-gray-150 text-xs text-gray-500 mt-6 leading-relaxed space-y-1">
+              <p>※週何回ご利用になられるか、緊急対応体制をご契約されるか等により、月次での総費用が変わります。詳しくは事前のご面談にて明快にご提示いたします。</p>
+              <p className="text-soft-orange font-bold">※料金は目安です。お住いの市区町村や自治体に確認、もしくはご相談ください。</p>
             </div>
           </div>
 

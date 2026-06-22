@@ -137,12 +137,6 @@ export default function Header() {
                 事業所情報
               </button>
               <button
-                onClick={() => scrollToSection("drive-integration")}
-                className="text-sm font-medium text-gray-600 hover:text-forest-medium transition-colors cursor-pointer"
-              >
-                ドライブ連携
-              </button>
-              <button
                 onClick={() => scrollToSection("faq")}
                 className="text-sm font-medium text-gray-600 hover:text-forest-medium transition-colors cursor-pointer"
               >
@@ -226,12 +220,6 @@ export default function Header() {
               className="text-left py-2 font-medium border-b border-gray-100 text-gray-700 cursor-pointer"
             >
               事業所情報
-            </button>
-            <button
-              onClick={() => scrollToSection("drive-integration")}
-              className="text-left py-2 font-medium border-b border-gray-100 text-gray-700 cursor-pointer"
-            >
-              ドライブ連携
             </button>
             <button
               onClick={() => scrollToSection("faq")}

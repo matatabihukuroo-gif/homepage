@@ -1,7 +1,29 @@
-import React from "react";
-import { Shield, Clock, Heart, Users, Check, ArrowDown } from "lucide-react";
+import React, { useState } from "react";
+import { Shield, Clock, Heart, Users, Check, ArrowDown, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 
 export default function Hero() {
+  const [phraseIndex, setPhraseIndex] = useState(0);
+
+  const impactPhrases = [
+    { en: "OWL NURSE COZY WRAP", jp: "ふくろうが心の傷をふんわり包み込む" },
+    { en: "24/7 MIND GUARDIAN", jp: "どんな孤独な夜も寄り添う、絶対の守護" },
+    { en: "SHIELD OF COMPASSION", jp: "豊かな精神科経験が、頼もしい温もりの盾になる" },
+    { en: "WING OF PEACE & HOPE", jp: "大きな翼で、不安や焦燥の嵐をそっと凪にする" },
+    { en: "NIGHT WATCHER COZY", jp: "守山区の皆様を、24時間優しく見守るふくろう" },
+    { en: "EMPATHY MATATABI NEST", jp: "株式会社またたびがお届けする、信頼と回復の巣箱" },
+    { en: "SOOTHING FOREST SHIELD", jp: "大地のココアベージュが、自律神経を和らげ癒やす" },
+    { en: "SOUL REASSURANCE 24h", jp: "365日いつでもつながる。あなたを絶対に一人にしない" },
+    { en: "365 SECURITY HARBOR", jp: "嵐を避ける港のように、穏やかな日々を守る砦" },
+    { en: "MIMOSA HEALING CIRCLE", jp: "優しいハーブ香るサークル。ありのままのあなたで" }
+  ];
+
+  const nextPhrase = () => {
+    setPhraseIndex((prev) => (prev + 1) % impactPhrases.length);
+  };
+
+  const prevPhrase = () => {
+    setPhraseIndex((prev) => (prev - 1 + impactPhrases.length) % impactPhrases.length);
+  };
   const scrollToContact = () => {
     const element = document.getElementById("contact");
     if (element) {
@@ -110,77 +132,143 @@ export default function Hero() {
           </div>
 
           {/* Graphic / Welcome Card Column */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative mx-auto max-w-md bg-white border border-warm-sand rounded-3xl p-6 shadow-xl relative overflow-hidden">
+          <div className="lg:col-span-12 xl:col-span-5 relative mt-6 lg:mt-0">
+            <div className="relative mx-auto max-w-md bg-white border border-warm-sand rounded-3xl p-6 shadow-xl relative overflow-hidden transition-all duration-300">
               {/* Soft decorative ring */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-forest-light/5 rounded-full -mr-16 -mt-16" />
               
-              <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-5">
-                <div className="flex items-center gap-2.5">
-                  <span className="w-2.5 h-2.5 bg-forest-medium rounded-full" />
-                  <span className="text-xs font-bold text-forest-medium/90 tracking-wide uppercase">OWL NURSE WRAP</span>
+              {/* Interactive Header for Phrase Customization */}
+              <div className="flex flex-col gap-2 border-b border-gray-100 pb-3 mb-4">
+                <div className="flex items-center justify-between">
+                  {/* Badge & Tooltip indicating clickability */}
+                  <span className="text-[10px] font-black text-soft-orange flex items-center gap-1 uppercase tracking-wider bg-soft-orange/10 px-2.5 py-1 rounded-md animate-pulse">
+                    <Sparkles className="w-3.5 h-3.5 text-soft-orange fill-soft-orange/35 shrink-0" />
+                    インパクトフレーズ案 (10候補をタップ！)
+                  </span>
+                  <div className="text-[10px] font-bold text-gray-400 bg-gray-50 border border-gray-150 px-2 py-0.5 rounded">名古屋市守山区</div>
                 </div>
-                <div className="text-xs font-bold text-gray-400 bg-gray-50 border border-gray-100 px-2 py-0.5 rounded">名古屋市守山区</div>
+
+                {/* Phrase Indicator Text & Toggle Arrow controls */}
+                <div className="flex items-center justify-between bg-gradient-to-r from-warm-cream to-white border border-warm-sand/70 rounded-xl p-2 mt-1 relative">
+                  <button 
+                    onClick={prevPhrase} 
+                    className="p-1.5 text-gray-400 hover:text-forest-dark hover:bg-gray-100 rounded-md transition-all cursor-pointer shrink-0"
+                    title="前の候補へ"
+                    id="prev-phrase-btn"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <div className="text-center px-2 flex-1 min-w-0">
+                    <span className="text-xs font-black text-[#563628] tracking-wider block transition-all duration-300 truncate">
+                      {impactPhrases[phraseIndex].en}
+                    </span>
+                    <span className="text-[10px] font-bold text-gray-500 block transition-all duration-300 truncate">
+                      〜 {impactPhrases[phraseIndex].jp} 〜
+                    </span>
+                  </div>
+                  <button 
+                    onClick={nextPhrase} 
+                    className="p-1.5 text-gray-400 hover:text-forest-dark hover:bg-gray-100 rounded-md transition-all cursor-pointer shrink-0"
+                    title="次の候補へ"
+                    id="next-phrase-btn"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
 
               {/* Heartwarm Illustration represented in beautiful CSS Shapes */}
-              <div className="w-full h-56 bg-gradient-to-br from-warm-peach to-amber-50/70 rounded-2xl flex items-center justify-center relative shadow-inner overflow-hidden border border-warm-sand/30">
-                <div className="absolute bottom-0 w-full h-1/4 bg-emerald-500/10 rounded-t-3xl" />
+              <div className="w-full h-80 bg-gradient-to-br from-warm-peach via-[#FFF4EB] to-amber-50 rounded-2xl flex items-center justify-center relative shadow-inner overflow-hidden border border-warm-sand/30">
+                <div className="absolute bottom-0 w-full h-1/4 bg-emerald-500/5 rounded-t-3xl" />
                 
                 {/* Visualizing a cute owl nurse protecting a cozy house */}
-                <div className="relative flex flex-col items-center select-none">
-                  {/* Styled Nested house */}
-                  <div className="w-16 h-12 bg-white rounded border border-warm-sand relative shadow-sm mb-2 flex flex-col justify-end items-center p-1">
-                    <div className="absolute top-[-10px] left-[-3px] w-[70px] h-3 bg-soft-orange rounded-full rotate-[-12deg]" />
-                    <div className="absolute top-[-10px] right-[-3px] w-[70px] h-3 bg-soft-orange rounded-full rotate-[12deg]" />
-                    <div className="w-3 h-3 bg-forest-light/20 rounded-full mb-1" />
+                <div className="relative flex flex-col items-center select-none pt-4">
+                  
+                  {/* BACKDROP WINGS (Making the hug giant, dynamic and prominent) */}
+                  <div className="absolute -top-6 w-44 h-44 bg-forest-medium/10 rounded-full blur-md animate-pulse pointer-events-none animate-spin-slow" />
+
+                  {/* Nested house (In front of owl wings, behind the owl body) */}
+                  <div className="w-20 h-16 bg-white rounded-lg border-2 border-warm-sand relative shadow-md mb-2 flex flex-col justify-end items-center p-1 z-10">
+                    {/* Roof */}
+                    <div className="absolute top-[-12px] left-[-4px] w-[88px] h-4 bg-soft-orange rounded-full rotate-[-12deg]" />
+                    <div className="absolute top-[-12px] right-[-4px] w-[88px] h-4 bg-soft-orange rounded-full rotate-[12deg]" />
+                    {/* Windows & Chimney */}
+                    <div className="absolute top-2 left-2 w-4 h-4 bg-yellow-100 border border-warm-sand rounded flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse" />
+                    </div>
+                    {/* Door */}
+                    <div className="w-4 h-6 bg-[#A16F1D]/20 rounded-t border-t border-x border-[#A16F1D] mb-0" />
                   </div>
 
-                  {/* Gentle giant owl floating protectively behind */}
-                  <div className="w-24 h-24 bg-[#EBE4D5] rounded-full relative shadow-md border-2 border-white flex flex-col items-center justify-center -mt-6">
-                    {/* Ears */}
-                    <div className="absolute -top-1.5 left-2.5 w-6 h-5 bg-[#DED5C3] rounded-tl-full rounded-tr-xl border-l border-white rotate-[-15deg]" />
-                    <div className="absolute -top-1.5 right-2.5 w-6 h-5 bg-[#DED5C3] rounded-tr-full rounded-tl-xl border-r border-white rotate-[15deg]" />
+                  {/* Gentle giant owl floating protectively behind OR Wrapping the house with gigantic impact wings */}
+                  <div className="w-40 h-40 bg-[#E3DAC9] rounded-full relative shadow-2xl border-4 border-white flex flex-col items-center justify-center -mt-10 z-20 transition-all duration-300 transform hover:scale-105 group">
                     
-                    {/* Eyes and beak */}
-                    <div className="flex gap-1.5 mt-2">
-                      <div className="w-7 h-7 bg-white rounded-full flex items-center justify-center border border-warm-sand">
-                        <div className="w-2 h-2 bg-gray-700 rounded-full" />
-                      </div>
-                      <div className="w-7 h-7 bg-white rounded-full flex items-center justify-center border border-warm-sand">
-                        <div className="w-2 h-2 bg-gray-700 rounded-full" />
-                      </div>
+                    {/* GIANT HOVER FLAPPING WINGS (Hug illustration) */}
+                    {/* Left Wing */}
+                    <div className="absolute -left-12 top-4 w-16 h-28 bg-[#D2C6B1] rounded-l-full border-l-4 border-y-2 border-white origin-right rotate-[15deg] group-hover:rotate-[-5deg] transition-all duration-500 shadow-md flex items-center justify-end pr-1">
+                      <div className="w-1 h-12 bg-white/40 rounded-full" />
                     </div>
-                    {/* Beak */}
-                    <div className="w-3 h-2 bg-[#F1A24B] rounded-b-full -mt-1.5" />
-                    
-                    {/* Belly pattern */}
-                    <div className="w-14 h-8 bg-white/75 rounded-b-2xl mt-1 flex justify-center items-center gap-1.5">
-                      <Heart className="w-3.5 h-3.5 text-soft-orange fill-soft-orange/30 animate-pulse" />
+                    {/* Right Wing */}
+                    <div className="absolute -right-12 top-4 w-16 h-28 bg-[#D2C6B1] rounded-r-full border-r-4 border-y-2 border-white origin-left rotate-[-15deg] group-hover:rotate-[5deg] transition-all duration-500 shadow-md flex items-center justify-start pl-1">
+                      <div className="w-1 h-12 bg-white/40 rounded-full" />
                     </div>
 
-                    {/* Nurse cap badge overlay */}
-                    <div className="absolute -top-2 bg-white border border-emerald-500 text-emerald-600 rounded px-1 text-[9px] font-bold leading-tight scale-90">
-                      ふくろう
+                    {/* Ears / Feather tufts */}
+                    <div className="absolute -top-3 left-4 w-10 h-8 bg-[#D2C6B1] rounded-tl-full rounded-tr-3xl border-l-2 border-white rotate-[-18deg]" />
+                    <div className="absolute -top-3 right-4 w-10 h-8 bg-[#D2C6B1] rounded-tr-full rounded-tl-3xl border-r-2 border-white rotate-[18deg]" />
+                    
+                    {/* Large expressive high-impact Owl Eyes */}
+                    <div className="flex gap-2 mt-1">
+                      <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center border-2 border-warm-sand shadow-inner relative overflow-hidden">
+                        {/* Shimmer Pupil */}
+                        <div className="w-5 h-5 bg-gray-800 rounded-full flex items-end justify-center relative">
+                          <div className="absolute top-1 right-1 w-2 h-2 bg-white rounded-full" />
+                          <div className="w-2.5 h-2 bg-[#F1A24B] rounded-full opacity-60 mb-1" />
+                        </div>
+                      </div>
+                      <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center border-2 border-warm-sand shadow-inner relative overflow-hidden">
+                        {/* Shimmer Pupil */}
+                        <div className="w-5 h-5 bg-gray-800 rounded-full flex items-end justify-center relative">
+                          <div className="absolute top-1 right-1 w-2 h-2 bg-white rounded-full" />
+                          <div className="w-2.5 h-2 bg-[#F1A24B] rounded-full opacity-60 mb-1" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Big Beak */}
+                    <div className="w-5 h-3.5 bg-soft-orange rounded-b-full -mt-1.5 z-30 shadow-sm border-t border-white/20" />
+                    
+                    {/* Friendly belly pattern with heart */}
+                    <div className="w-20 h-12 bg-white/85 rounded-b-3xl mt-2 flex flex-col justify-center items-center gap-1 shadow-inner border border-warm-sand/20">
+                      <Heart className="w-5 h-5 text-soft-orange fill-soft-orange/30 animate-pulse" />
+                    </div>
+
+                    {/* Highly Professional Nurse Cap Overlay */}
+                    <div className="absolute -top-4 bg-white border-2 border-forest-medium text-forest-medium font-black rounded-lg px-2 py-0.5 text-[10px] leading-tight shadow-md flex items-center gap-1 tracking-wider">
+                      <span className="w-2 h-2 rounded-full bg-soft-orange animate-ping shrink-0" />
+                      ふくろうナース
                     </div>
                   </div>
                 </div>
 
                 {/* Floating small badge bubbles of reassurance */}
-                <span className="absolute top-4 left-4 bg-white/90 border border-gray-100 text-gray-700 font-bold text-[11px] px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
-                  <Check className="w-3.5 h-3.5 text-forest-medium" /> 心安らぐ時間
+                <span className="absolute top-3 left-3 bg-white/95 border border-warm-sand/80 text-forest-dark font-extrabold text-[10px] px-2.5 py-1 rounded-full shadow-md flex items-center gap-1 z-30">
+                  <Check className="w-3.5 h-3.5 text-forest-medium stroke-[3]" /> 心安らぐ時間
                 </span>
 
-                <span className="absolute bottom-4 right-4 bg-white/90 border border-gray-100 text-gray-700 font-bold text-[11px] px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
-                  <Check className="w-3.5 h-3.5 text-soft-orange" /> 365日いつもそばに
+                <span className="absolute bottom-3 right-3 bg-white/95 border border-warm-sand/80 text-forest-dark font-extrabold text-[10px] px-2.5 py-1 rounded-full shadow-md flex items-center gap-1 z-30">
+                  <Check className="w-3.5 h-3.5 text-soft-orange stroke-[3]" /> 365日いつでもそばに
                 </span>
               </div>
 
-              {/* Little reassuring quote at bottom */}
-              <div className="mt-5 bg-gradient-to-r from-forest-dark/5 to-transparent p-4 rounded-xl border-l-4 border-forest-light text-left">
-                <span className="text-xs font-bold text-forest-medium block mb-0.5">「ふくろう」の名に込めた想い</span>
+              {/* Dynamic Interactive Description */}
+              <div className="mt-4 bg-gradient-to-r from-forest-dark/5 to-transparent p-4 rounded-xl border-l-4 border-forest-light text-left transition-all">
+                <span className="text-xs font-bold text-forest-medium flex items-center gap-1.5 mb-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-forest-medium" />
+                  「ふくろう守山」の守護の想い
+                </span>
                 <p className="text-[11px] leading-relaxed text-gray-500 font-normal">
-                  夜の森を見守るふくろうのように、不安な夜や困った時にいつでも手を差し伸べられるよう、24時間の支援体制を完備しています。ひとりきりで悩まず、お気軽にご相談ください。
+                  夜の森をダイナミックに見守る大きなふくろうが、あなたの安らげる我が家を強固な愛の翼（巨大ウイング）でやさしく保護します。365日24時間対応可能な体制で、ご本人様もご家族様も孤独から完全に守護することをお約束します。
                 </p>
               </div>
             </div>
