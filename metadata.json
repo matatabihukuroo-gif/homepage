@@ -1,0 +1,6 @@
+{
+  "name": "訪問看護ステーションふくろう守山",
+  "description": "株式会社またたびが運営する、名古屋市守山区の精神科に特化した訪問看護ステーション「ふくろう守山」の公式コーポレートサイト。24時間365日体制で、経験豊富な精神科専門スタッフが温かい看護と地域ケアをお届けします。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
